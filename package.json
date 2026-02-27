@@ -1,0 +1,76 @@
+{
+  "name": "vercel-desktop",
+  "version": "1.0.0",
+  "description": "Vercel Dashboard as a standalone desktop application",
+  "main": "src/main.js",
+  "author": "Jero <jerophinstanley47@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/jero/vercel-desktop",
+  "scripts": {
+    "dev": "electron .",
+    "build": "node scripts/convert-icon.js && electron-builder",
+    "dist": "node scripts/convert-icon.js && electron-builder --win --mac --linux",
+    "dist:win": "node scripts/dist-win.js",
+    "dist:linux": "node scripts/convert-icon.js && electron-builder --linux",
+    "postinstall": "node scripts/convert-icon.js"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8",
+    "sharp": "^0.33.5"
+  },
+  "build": {
+    "appId": "com.jero.verceldesktop",
+    "productName": "Vercel Desktop",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "assets/**/*"
+    ],
+    "win": {
+      "target": ["nsis", "msi"],
+      "icon": "assets/icon.png",
+      "forceCodeSigning": false,
+      "sign": null
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "msi": {
+      "oneClick": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon.png",
+      "category": "public.app-category.developer-tools"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": ["AppImage", "deb", "rpm"],
+      "icon": "assets/icon.png",
+      "category": "Development",
+      "maintainer": "Jero <jero@example.com>"
+    },
+    "extraResources": []
+  }
+}
