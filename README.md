@@ -1,4 +1,4 @@
-# Vercel Desktop
+# Vercel Desktop UnOfficial (Electron Build)
 
 A production-ready Electron desktop application that wraps the [Vercel Dashboard](https://vercel.com/dashboard) as a standalone installable app for Windows, macOS, and Linux.
 
